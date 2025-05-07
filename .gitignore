@@ -9,7 +9,6 @@
 *.ipr
 *.iws
 .idea/
-.fleet/
 .gradle/
 .kotlin/
 
@@ -21,17 +20,22 @@ local.properties
 
 # generated files
 bin/
-gen/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
 build/
-out/
-
-###
-
-HELP.md
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+###
+HELP.md
 
 ### STS ###
 .apt_generated
