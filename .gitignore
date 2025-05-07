@@ -1,3 +1,32 @@
+# MacOS garbage
+.DS_Store
+
+# temp files
+*~*
+
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.idea/
+.fleet/
+.gradle/
+.kotlin/
+
+### VS Code ###
+.vscode/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# generated files
+bin/
+gen/
+build/
+out/
+
+###
+
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -12,22 +41,3 @@ target/
 .settings
 .springBeans
 .sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
