@@ -9,8 +9,19 @@ import Foundation
 import SwiftUI
 
 struct ContentView: View {
+
 	var body: some View {
-		Text("Hello, World!")
+		TabView {
+			PokemonList()
+				.tabItem {
+					Label("Pokémons", systemImage: "tortoise")
+				}
+
+			SelectedList()
+				.tabItem {
+					Label("Starred", systemImage: "list.star")
+				}
+		}
 	}
 }
 

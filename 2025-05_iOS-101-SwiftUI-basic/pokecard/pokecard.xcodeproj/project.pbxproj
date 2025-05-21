@@ -10,22 +10,9 @@
 		2BC70DB02DD4CA5E00B36CB7 /* pokecard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pokecard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		2B44A83B2DDB367600C1C015 /* Exceptions for "pokecard" folder in "Copy Bundle Resources" phase from "pokecard" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = 2BC70DAE2DD4CA5E00B36CB7 /* Resources */;
-			membershipExceptions = (
-				"Utilities/Array+Utils.swift",
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		2BC70DB22DD4CA5E00B36CB7 /* pokecard */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				2B44A83B2DDB367600C1C015 /* Exceptions for "pokecard" folder in "Copy Bundle Resources" phase from "pokecard" target */,
-			);
 			path = pokecard;
 			sourceTree = "<group>";
 		};
