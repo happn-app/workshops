@@ -64,15 +64,15 @@ fun Modifier.holo(
             val path = shape.toPath(size, density)
             this.clipPath(path) {
                 this@drawWithContent.drawContent()
-                //this.drawSurface(brushOffset = Offset(-offsetX, -offsetY))
-                //this.drawReflect(brushOffset = Offset(offsetX, offsetY))
+                if (enabled) {
+                    this.drawSurface(brushOffset = Offset(-offsetX, -offsetY))
+                    this.drawReflect(brushOffset = Offset(offsetX, offsetY))
+                }
                 if (touchPosition != Offset.Unspecified) {
-                    /*
                     this.drawLight(
                         center = touchPosition,
                         radius = minOf(this.size.width, this.size.height),
                     )
-                    */
                 }
             }
         }

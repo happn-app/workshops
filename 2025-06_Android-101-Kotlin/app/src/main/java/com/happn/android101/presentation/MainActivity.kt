@@ -3,24 +3,52 @@ package com.happn.android101.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.material3.Text
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.remember
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.happn.android101.data.PokemonRepository
 import com.happn.android101.presentation.theme.Android101Theme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val repository = PokemonRepository(context = this)
+        
         setContent {
             Android101Theme {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .statusBarsPadding()
+                val pokemonCards = remember { repository.getPokemonCards() }
+
+                val navController = rememberNavController()
+                NavHost(
+                    navController = navController,
+                    startDestination = "main"
                 ) {
-                    Text(text = "Hello happn!")
+                    composable("main") {
+                        MainScreen(
+                            pokemonCards = pokemonCards,
+                            onCardClick = {
+                                navController.navigate("card/${it}")
+                            }
+                        )
+                    }
+                    composable(
+                        route = "card/{cardId}",
+                        arguments = listOf(navArgument("cardId") { type = NavType.IntType })
+                    ) { backStackEntry ->
+                        pokemonCards
+                            .find {
+                                it.id == backStackEntry.arguments?.getInt("cardId")
+                            }?.let { card ->
+                                CardScreen(
+                                    pokemonCard = card
+                                )
+                            }
+                    }
                 }
             }
         }
