@@ -9,12 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.happn.android101.domain.PokemonCard
+import com.happn.android101.domain.Pokemon
 import com.happn.android101.presentation.theme.Android101Theme
 
 @Composable
 fun MainScreen(
-    pokemonCards: List<PokemonCard>,
+    pokemonCards: List<Pokemon>,
     onCardClick: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -23,8 +23,8 @@ fun MainScreen(
         modifier = modifier
     ) {
         items(pokemonCards) { card ->
-            Card(
-                pokemonCard = card,
+            PokemonCard(
+                pokemon = card,
                 modifier = Modifier
                     .padding(8.dp)
                     .clickable { onCardClick(card.id) }
@@ -39,7 +39,7 @@ fun MainScreen(
 fun GreetingPreview() {
     Android101Theme {
         MainScreen(
-            pokemonCards = listOf(PokemonCard(name = "Alakazam", id = 1, holo = true)),
+            pokemonCards = listOf(Pokemon(name = "Alakazam", id = 1, holo = true)),
             onCardClick = {}
         )
     }

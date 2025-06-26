@@ -2,14 +2,14 @@ package com.happn.android101.data
 
 import android.content.Context
 import com.happn.android101.R
-import com.happn.android101.domain.PokemonCard
+import com.happn.android101.domain.Pokemon
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
 class PokemonRepository(private val context: Context) {
 
-    fun getPokemonCards(): List<PokemonCard> {
+    fun getPokemonCards(): List<Pokemon> {
         val inputStream = context.resources.openRawResource(R.raw.pokemon_base_set)
         val reader = BufferedReader(InputStreamReader(inputStream))
         val jsonString = reader.readText()
@@ -17,7 +17,7 @@ class PokemonRepository(private val context: Context) {
         val jsonObject = JSONObject(jsonString)
         val cardsArray = jsonObject.getJSONArray("cards")
 
-        val pokemonCards = mutableListOf<PokemonCard>()
+        val pokemonCards = mutableListOf<Pokemon>()
 
         for (i in 0 until cardsArray.length()) {
             val card = cardsArray.getJSONObject(i)
@@ -25,7 +25,7 @@ class PokemonRepository(private val context: Context) {
             val name = card.getString("name")
             val holo = card.getBoolean("holo")
             pokemonCards.add(
-                PokemonCard(
+                Pokemon(
                     id = id,
                     name = name,
                     holo = holo

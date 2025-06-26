@@ -8,12 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import com.happn.android101.domain.PokemonCard
+import com.happn.android101.domain.Pokemon
 import com.happn.android101.presentation.utils.getPokemonCardResId
 
 @Composable
-fun Card(
-    pokemonCard: PokemonCard,
+fun PokemonCard(
+    pokemon: Pokemon,
     modifier: Modifier = Modifier
 ) {
     Image(
@@ -21,7 +21,7 @@ fun Card(
             .clip(RoundedCornerShape(percent = 4))
             .aspectRatio(63 / 88f),
         painter = painterResource(
-            getPokemonCardResId(pokemonCard.id)
+            getPokemonCardResId(pokemon.id)
         ),
         contentScale = ContentScale.Crop,
         contentDescription = null,

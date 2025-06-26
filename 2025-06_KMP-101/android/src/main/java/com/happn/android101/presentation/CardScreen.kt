@@ -8,12 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.happn.android101.domain.PokemonCard
+import com.happn.android101.domain.Pokemon
 import com.happn.android101.presentation.utils.holo
 
 @Composable
 fun CardScreen(
-    pokemonCard: PokemonCard,
+    pokemonCard: Pokemon,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -22,13 +22,13 @@ fun CardScreen(
             .padding(32.dp),
         contentAlignment = Alignment.Center,
     ) {
-        Card(
+        PokemonCard(
             modifier = Modifier
                 .holo(
                     shape = RoundedCornerShape(percent = 4),
                     enabled = pokemonCard.holo,
                 ),
-            pokemonCard = pokemonCard,
+            pokemon = pokemonCard,
         )
     }
 }
