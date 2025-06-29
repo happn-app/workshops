@@ -9,19 +9,21 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.happn.android101.data.PokemonRepository
 import com.happn.android101.presentation.theme.Android101Theme
+import com.happn.kmp101.data.LocalPokemonRepository
+import com.happn.kmp101.domain.PokemonRepository
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val repository = PokemonRepository(context = this)
-        
+        val repository: PokemonRepository = LocalPokemonRepository()
+
         setContent {
             Android101Theme {
-                val pokemonCards = remember { repository.getPokemonCards() }
+                val pokemonCards = remember { runBlocking { repository.getAll() } }
 
                 val navController = rememberNavController()
                 NavHost(

@@ -1,5 +1,8 @@
 package com.happn.kmp101.domain
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Pokemon(
     val id: Int,
     val name: String,
