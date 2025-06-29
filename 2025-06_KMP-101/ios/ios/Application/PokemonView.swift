@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PokemonCell: View {
 
-	let pokemon: Pokemon
+	let pokemon: PokemonCard
 
 	var body: some View {
 		Image(pokemon.image)

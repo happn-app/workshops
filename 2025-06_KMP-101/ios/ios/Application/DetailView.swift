@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DetailView: View {
 
-	let pokemon: Pokemon
+	let pokemon: PokemonCard
 
 	var body: some View {
 		VStack(spacing: 0) {

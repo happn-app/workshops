@@ -5,7 +5,7 @@
 //  Created by Romain Talleu on 19/05/2025.
 //
 
-struct Pokemon: Decodable, Identifiable {
+struct PokemonCard: Decodable, Identifiable {
 	let id: Int
 	let name: String
 

@@ -11,7 +11,7 @@ import SwiftUI
 struct SelectedList: View {
 
 	@AppStorage(AppSettings.selectedCards) var selectedCards: [Int] = []
-	@State private var pokemons: [Pokemon] = []
+	@State private var pokemons: [PokemonCard] = []
 
 	private let columns: [GridItem] = Array(repeating: GridItem(.flexible(minimum:100)), count: 2)
 

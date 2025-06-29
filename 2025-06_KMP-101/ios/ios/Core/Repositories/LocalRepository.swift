@@ -8,7 +8,7 @@
 import Foundation
 
 class LocalRepository: Repository {
-	func fetchPokemons() async throws -> [Pokemon] {
+	func fetchPokemons() async throws -> [PokemonCard] {
 		guard let url = Bundle.main.url(forResource: "pokemon_list", withExtension: "json") else {
 			throw RepositoryError.unknown
 		}
@@ -18,7 +18,7 @@ class LocalRepository: Repository {
 		}
 
 		let decoder = JSONDecoder()
-		guard let list = try? decoder.decode([Pokemon].self, from: data) else {
+		guard let list = try? decoder.decode([PokemonCard].self, from: data) else {
 			throw RepositoryError.unknown
 		}
 

@@ -9,7 +9,7 @@ import Foundation
 
 
 protocol Repository {
-	func fetchPokemons() async throws -> [Pokemon]
+	func fetchPokemons() async throws -> [PokemonCard]
 }
 
 enum RepositoryError: Error {
