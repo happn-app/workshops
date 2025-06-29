@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import shared
 
 struct PokemonList: View {
 
@@ -41,9 +42,25 @@ struct PokemonList: View {
 			}
 			.onAppear {
 				Task {
-					pokemons = (try? await LocalRepository().fetchPokemons()) ?? []
+					pokemons = await fetchPokemonsFromKMP()
 				}
 			}
 		}
 	}
+    
+    func fetchPokemons() async -> [PokemonCard] {
+        return (try? await LocalRepository().fetchPokemons()) ?? []
+    }
+    
+    func fetchPokemonsFromKMP() async -> [PokemonCard] {
+        let kmpPokemons = (try? await LocalPokemonRepository().getAll()) ?? []
+        
+        return kmpPokemons.map { pokemon in pokemon.toPokemonCard()}
+    }
+}
+
+extension Pokemon {
+    func toPokemonCard() -> PokemonCard {
+        .init(id: Int(id), name: name)
+    }
 }
