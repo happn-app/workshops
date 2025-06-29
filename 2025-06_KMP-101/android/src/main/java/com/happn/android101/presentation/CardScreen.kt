@@ -26,9 +26,11 @@ fun CardScreen(
             modifier = Modifier
                 .holo(
                     shape = RoundedCornerShape(percent = 4),
-                    enabled = pokemon.holo,
+                    enabled = pokemon.isHolo(),
                 ),
             pokemonId = pokemon.id,
         )
     }
 }
+
+private fun Pokemon.isHolo(): Boolean = id % 2 == 0

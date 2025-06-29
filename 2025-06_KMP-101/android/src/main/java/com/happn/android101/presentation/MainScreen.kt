@@ -38,7 +38,7 @@ fun MainScreen(
 fun GreetingPreview() {
     Android101Theme {
         MainScreen(
-            pokemonList = listOf(Pokemon(name = "Alakazam", id = 1, holo = true)),
+            pokemonList = listOf(Pokemon(name = "Bulbizarre", id = 1)),
             onCardClick = {}
         )
     }
