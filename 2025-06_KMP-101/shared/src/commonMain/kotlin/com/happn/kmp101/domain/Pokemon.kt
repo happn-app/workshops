@@ -3,9 +3,8 @@ package com.happn.kmp101.domain
 data class Pokemon(
     val id: Int,
     val name: String,
+    val holo: Boolean = id % 2 == 0,
 ) {
-    fun isHolo(): Boolean = id % 2 == 0
-
     fun getImageUrl(): String {
         return "https://pokecardex.b-cdn.net/assets/images/sets/MEW/HD/$id.jpg"
     }

@@ -2,10 +2,11 @@ package com.happn.kmp101.data
 
 import com.happn.kmp101.domain.Pokemon
 import com.happn.kmp101.domain.PokemonRepository
+import kotlinx.serialization.json.Json.Default.decodeFromString
 
 class LocalPokemonRepository : PokemonRepository {
     val pokemonList by lazy {
-        deserializedPokemonList()
+        decodeFromString<List<Pokemon>>(serializedPokemonList)
     }
 
     override suspend fun getAll(): List<Pokemon> = hardcodedPokemonList
@@ -20,10 +21,6 @@ class LocalPokemonRepository : PokemonRepository {
             Pokemon(id = 6, name = "Charizard"),
         )
 
-        fun deserializedPokemonList(): List<Pokemon> {
-            return Json.decodeFromString<List<Pokemon>>(serializedPokemonList)
-
-        }
         val serializedPokemonList = """
             [
             	{
