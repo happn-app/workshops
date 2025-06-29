@@ -42,21 +42,17 @@ struct PokemonList: View {
 			}
 			.onAppear {
 				Task {
-					pokemons = await fetchPokemonsFromKMP()
+					pokemons = await fetchPokemons()
 				}
 			}
 		}
 	}
+}
+
+func fetchPokemons() async -> [PokemonCard] {
+    let kmpPokemons = (try? await LocalPokemonRepository().getAll()) ?? []
     
-    func fetchPokemons() async -> [PokemonCard] {
-        return (try? await LocalRepository().fetchPokemons()) ?? []
-    }
-    
-    func fetchPokemonsFromKMP() async -> [PokemonCard] {
-        let kmpPokemons = (try? await LocalPokemonRepository().getAll()) ?? []
-        
-        return kmpPokemons.map { pokemon in pokemon.toPokemonCard()}
-    }
+    return kmpPokemons.map { pokemon in pokemon.toPokemonCard()}
 }
 
 extension Pokemon {

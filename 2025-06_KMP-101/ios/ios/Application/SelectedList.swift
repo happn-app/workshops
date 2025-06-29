@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import shared
 
 struct SelectedList: View {
 
@@ -28,10 +29,10 @@ struct SelectedList: View {
 				}
 			}
 		}
-		.onAppear {
-			Task {
-				pokemons = (try? await LocalRepository().fetchPokemons()) ?? []
-			}
-		}
-	}
+        .onAppear {
+            Task {
+                pokemons = await fetchPokemons()
+            }
+        }
+    }
 }
