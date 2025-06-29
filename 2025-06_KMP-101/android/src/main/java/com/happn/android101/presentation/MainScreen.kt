@@ -9,37 +9,36 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.happn.android101.domain.Pokemon
 import com.happn.android101.presentation.theme.Android101Theme
+import com.happn.kmp101.domain.Pokemon
 
 @Composable
 fun MainScreen(
-    pokemonCards: List<Pokemon>,
+    pokemonList: List<Pokemon>,
     onCardClick: (Int) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(3),
         modifier = modifier
     ) {
-        items(pokemonCards) { card ->
+        items(pokemonList) { pokemon ->
             PokemonCard(
-                pokemon = card,
+                pokemonId = pokemon.id,
                 modifier = Modifier
                     .padding(8.dp)
-                    .clickable { onCardClick(card.id) }
+                    .clickable { onCardClick(pokemon.id) }
             )
         }
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     Android101Theme {
         MainScreen(
-            pokemonCards = listOf(Pokemon(name = "Alakazam", id = 1, holo = true)),
+            pokemonList = listOf(Pokemon(name = "Alakazam", id = 1, holo = true)),
             onCardClick = {}
         )
     }

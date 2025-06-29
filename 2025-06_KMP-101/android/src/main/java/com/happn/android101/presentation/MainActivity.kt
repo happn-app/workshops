@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     composable("main") {
                         MainScreen(
-                            pokemonCards = pokemonCards,
+                            pokemonList = pokemonCards,
                             onCardClick = {
                                 navController.navigate("card/${it}")
                             }
@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
                                 it.id == backStackEntry.arguments?.getInt("cardId")
                             }?.let { card ->
                                 CardScreen(
-                                    pokemonCard = card
+                                    pokemon = card
                                 )
                             }
                     }
