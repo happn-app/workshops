@@ -1,0 +1,514 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "name": "Alakazam",
+      "holo": true
+    },
+    {
+      "id": 2,
+      "name": "Tortank",
+      "holo": true
+    },
+    {
+      "id": 3,
+      "name": "Leveinard",
+      "holo": true
+    },
+    {
+      "id": 4,
+      "name": "Dracaufeu",
+      "holo": true
+    },
+    {
+      "id": 5,
+      "name": "Mélofée",
+      "holo": true
+    },
+    {
+      "id": 6,
+      "name": "Léviator",
+      "holo": true
+    },
+    {
+      "id": 7,
+      "name": "Tygnon",
+      "holo": true
+    },
+    {
+      "id": 8,
+      "name": "Mackogneur",
+      "holo": true
+    },
+    {
+      "id": 9,
+      "name": "Magnéton",
+      "holo": true
+    },
+    {
+      "id": 10,
+      "name": "Mewtwo",
+      "holo": true
+    },
+    {
+      "id": 11,
+      "name": "Nidoking",
+      "holo": true
+    },
+    {
+      "id": 12,
+      "name": "Feunard",
+      "holo": true
+    },
+    {
+      "id": 13,
+      "name": "Tartard",
+      "holo": true
+    },
+    {
+      "id": 14,
+      "name": "Raichu",
+      "holo": true
+    },
+    {
+      "id": 15,
+      "name": "Florizarre",
+      "holo": true
+    },
+    {
+      "id": 16,
+      "name": "Électhor",
+      "holo": true
+    },
+    {
+      "id": 17,
+      "name": "Dardargnan",
+      "holo": false
+    },
+    {
+      "id": 18,
+      "name": "Dracolosse",
+      "holo": false
+    },
+    {
+      "id": 19,
+      "name": "Triopikeur",
+      "holo": false
+    },
+    {
+      "id": 20,
+      "name": "Électek",
+      "holo": false
+    },
+    {
+      "id": 21,
+      "name": "Électrode",
+      "holo": false
+    },
+    {
+      "id": 22,
+      "name": "Roucoups",
+      "holo": false
+    },
+    {
+      "id": 23,
+      "name": "Arcanin",
+      "holo": false
+    },
+    {
+      "id": 24,
+      "name": "Reptincel",
+      "holo": false
+    },
+    {
+      "id": 25,
+      "name": "Lamantine",
+      "holo": false
+    },
+    {
+      "id": 26,
+      "name": "Minidraco",
+      "holo": false
+    },
+    {
+      "id": 27,
+      "name": "Canarticho",
+      "holo": false
+    },
+    {
+      "id": 28,
+      "name": "Caninos",
+      "holo": false
+    },
+    {
+      "id": 29,
+      "name": "Spectrum",
+      "holo": false
+    },
+    {
+      "id": 30,
+      "name": "Herbizarre",
+      "holo": false
+    },
+    {
+      "id": 31,
+      "name": "Lippoutou",
+      "holo": false
+    },
+    {
+      "id": 32,
+      "name": "Kadabra",
+      "holo": false
+    },
+    {
+      "id": 33,
+      "name": "Coconfort",
+      "holo": false
+    },
+    {
+      "id": 34,
+      "name": "Machopeur",
+      "holo": false
+    },
+    {
+      "id": 35,
+      "name": "Magicarpe",
+      "holo": false
+    },
+    {
+      "id": 36,
+      "name": "Magmar",
+      "holo": false
+    },
+    {
+      "id": 37,
+      "name": "Nidorino",
+      "holo": false
+    },
+    {
+      "id": 38,
+      "name": "Têtarte",
+      "holo": false
+    },
+    {
+      "id": 39,
+      "name": "Porygon",
+      "holo": false
+    },
+    {
+      "id": 40,
+      "name": "Rattatac",
+      "holo": false
+    },
+    {
+      "id": 41,
+      "name": "Otaria",
+      "holo": false
+    },
+    {
+      "id": 42,
+      "name": "Carabaffe",
+      "holo": false
+    },
+    {
+      "id": 43,
+      "name": "Abra",
+      "holo": false
+    },
+    {
+      "id": 44,
+      "name": "Bulbizarre",
+      "holo": false
+    },
+    {
+      "id": 45,
+      "name": "Chenipan",
+      "holo": false
+    },
+    {
+      "id": 46,
+      "name": "Salamèche",
+      "holo": false
+    },
+    {
+      "id": 47,
+      "name": "Taupiqueur",
+      "holo": false
+    },
+    {
+      "id": 48,
+      "name": "Doduo",
+      "holo": false
+    },
+    {
+      "id": 49,
+      "name": "Soporifik",
+      "holo": false
+    },
+    {
+      "id": 50,
+      "name": "Fantominus",
+      "holo": false
+    },
+    {
+      "id": 51,
+      "name": "Smogo",
+      "holo": false
+    },
+    {
+      "id": 52,
+      "name": "Machoc",
+      "holo": false
+    },
+    {
+      "id": 53,
+      "name": "Magnéti",
+      "holo": false
+    },
+    {
+      "id": 54,
+      "name": "Chrysacier",
+      "holo": false
+    },
+    {
+      "id": 55,
+      "name": "Nidoran♂",
+      "holo": false
+    },
+    {
+      "id": 56,
+      "name": "Onix",
+      "holo": false
+    },
+    {
+      "id": 57,
+      "name": "Roucool",
+      "holo": false
+    },
+    {
+      "id": 58,
+      "name": "Pikachu",
+      "holo": false
+    },
+    {
+      "id": 59,
+      "name": "Têtacool",
+      "holo": false
+    },
+    {
+      "id": 60,
+      "name": "Ponyta",
+      "holo": false
+    },
+    {
+      "id": 61,
+      "name": "Rattata",
+      "holo": false
+    },
+    {
+      "id": 62,
+      "name": "Sabelette",
+      "holo": false
+    },
+    {
+      "id": 63,
+      "name": "Carapuce",
+      "holo": false
+    },
+    {
+      "id": 64,
+      "name": "Staross",
+      "holo": false
+    },
+    {
+      "id": 65,
+      "name": "Stari",
+      "holo": false
+    },
+    {
+      "id": 66,
+      "name": "Saquedeneu",
+      "holo": false
+    },
+    {
+      "id": 67,
+      "name": "Voltorbe",
+      "holo": false
+    },
+    {
+      "id": 68,
+      "name": "Goupix",
+      "holo": false
+    },
+    {
+      "id": 69,
+      "name": "Aspicot",
+      "holo": false
+    },
+    {
+      "id": 70,
+      "name": "Poupée Mélofée",
+      "holo": false
+    },
+    {
+      "id": 71,
+      "name": "Cherche Ordinateur",
+      "holo": false
+    },
+    {
+      "id": 72,
+      "name": "Spray Dévolution",
+      "holo": false
+    },
+    {
+      "id": 73,
+      "name": "Faux Professeur Chen",
+      "holo": false
+    },
+    {
+      "id": 74,
+      "name": "Cherche Objet",
+      "holo": false
+    },
+    {
+      "id": 75,
+      "name": "Demoiselle",
+      "holo": false
+    },
+    {
+      "id": 76,
+      "name": "Éleveur Pokémon",
+      "holo": false
+    },
+    {
+      "id": 77,
+      "name": "Échange Pokémon",
+      "holo": false
+    },
+    {
+      "id": 78,
+      "name": "Ressaisissement",
+      "holo": false
+    },
+    {
+      "id": 79,
+      "name": "Super Retrait d'Énergie",
+      "holo": false
+    },
+    {
+      "id": 80,
+      "name": "Protecteur",
+      "holo": false
+    },
+    {
+      "id": 81,
+      "name": "Récupération d'Énergie",
+      "holo": false
+    },
+    {
+      "id": 82,
+      "name": "Guérison Totale",
+      "holo": false
+    },
+    {
+      "id": 83,
+      "name": "Entretien",
+      "holo": false
+    },
+    {
+      "id": 84,
+      "name": "Plus d'Énergie",
+      "holo": false
+    },
+    {
+      "id": 85,
+      "name": "Centre Pokémon",
+      "holo": false
+    },
+    {
+      "id": 86,
+      "name": "Flûte Pokémon",
+      "holo": false
+    },
+    {
+      "id": 87,
+      "name": "Pokédex",
+      "holo": false
+    },
+    {
+      "id": 88,
+      "name": "Professeur Chen",
+      "holo": false
+    },
+    {
+      "id": 89,
+      "name": "Rappel",
+      "holo": false
+    },
+    {
+      "id": 90,
+      "name": "Super Potion",
+      "holo": false
+    },
+    {
+      "id": 91,
+      "name": "Léo",
+      "holo": false
+    },
+    {
+      "id": 92,
+      "name": "Retrait d'Énergie",
+      "holo": false
+    },
+    {
+      "id": 93,
+      "name": "Tornade",
+      "holo": false
+    },
+    {
+      "id": 94,
+      "name": "Potion",
+      "holo": false
+    },
+    {
+      "id": 95,
+      "name": "Interversion",
+      "holo": false
+    },
+    {
+      "id": 96,
+      "name": "Énergie Incolore Double",
+      "holo": false
+    },
+    {
+      "id": 97,
+      "name": "Énergie Combat",
+      "holo": false
+    },
+    {
+      "id": 98,
+      "name": "Énergie Feu",
+      "holo": false
+    },
+    {
+      "id": 99,
+      "name": "Énergie Plante",
+      "holo": false
+    },
+    {
+      "id": 100,
+      "name": "Énergie Électrique",
+      "holo": false
+    },
+    {
+      "id": 101,
+      "name": "Énergie Psy",
+      "holo": false
+    },
+    {
+      "id": 102,
+      "name": "Énergie Eau",
+      "holo": false
+    }
+  ]
+}
