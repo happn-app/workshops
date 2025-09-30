@@ -1,34 +1,32 @@
-//! # handlers.rs – Définition des routes HTTP (CRUD) pour les utilisateurs
+//! # handlers.rs – Definition of HTTP routes (CRUD) for users
 //!
-//! Ce module gère les routes suivantes :
-//! - GET /users         → Liste des utilisateurs
-//! - POST /users        → Création d'un utilisateur
-//! - PUT /users/{id}    → Mise à jour d'un utilisateur
-//! - DELETE /users/{id} → Suppression d'un utilisateur
-
-// 📦 Imports nécessaires
-use actix_web::{get, post, put, delete, web, HttpResponse}; // Macros de routes et types web
-use diesel::prelude::*;                                     // Requêtes SQL avec Diesel
-use crate::{models::{User, NewUser}, schema::users::dsl::*, db::DbPool}; // Accès aux modèles, schéma et DB
-use uuid::Uuid;                                              // Pour l'identifiant unique des users
+//! This module handles the following routes:
+//! - GET /users         → List users
+//! - POST /users        → Create a user
+//! - PUT /users/{id}    → Update a user
+//! - DELETE /users/{id} → Delete a user
+// 📦 Required imports
+use actix_web::{get, post, put, delete, web, HttpResponse}; // Route macros and web types
+use diesel::prelude::*;                                     // SQL queries with Diesel
+use crate::{models::{User, NewUser}, schema::users::dsl::*, db::DbPool}; // Access to models, schema and DB
+use uuid::Uuid;                                              // For the user's unique identifier
 
 /// ✅ Handler GET /users
-/// Récupère la liste des utilisateurs depuis la base
-#[get("/users")]
+/// Retrieves the list of users from the database
 async fn list_users(pool: web::Data<DbPool>) -> HttpResponse {
-    let conn = &mut pool.get().unwrap(); // Connexion DB à partir du pool
+    let conn = &mut pool.get().unwrap(); // DB connection from the pool
 
     // 🔎 SELECT * FROM users
     let result = users
-        .select(User::as_select()) // Sélectionne toutes les colonnes nécessaires
-        .load::<User>(conn)        // Exécute la requête
+        .select(User::as_select()) // Selects all necessary columns
+        .load::<User>(conn)        // Executes the query
         .unwrap();
 
-    HttpResponse::Ok().json(result) // 🔁 Retourne la liste au format JSON
+    HttpResponse::Ok().json(result) // 🔁 Returns the list as JSON
 }
 
 /// ✅ Handler POST /users
-/// Crée un nouvel utilisateur à partir d'un JSON reçu
+/// Creates a new user from received JSON
 #[post("/users")]
 async fn create_user(pool: web::Data<DbPool>, item: web::Json<NewUser>) -> HttpResponse {
     let conn = &mut pool.get().unwrap();
@@ -39,11 +37,11 @@ async fn create_user(pool: web::Data<DbPool>, item: web::Json<NewUser>) -> HttpR
         .execute(conn)
         .unwrap();
 
-    HttpResponse::Created().finish() // ✅ Retourne 201 Created
+    HttpResponse::Created().finish() // ✅ Returns 201 Created
 }
 
 /// ✅ Handler PUT /users/{user_id}
-/// Met à jour le nom de l'utilisateur spécifié
+/// Updates the name of the specified user
 #[put("/users/{user_id}")]
 async fn update_user(
     pool: web::Data<DbPool>,
@@ -62,7 +60,7 @@ async fn update_user(
 }
 
 /// ✅ Handler DELETE /users/{user_id}
-/// Supprime un utilisateur par son ID
+/// Deletes a user by their ID
 #[delete("/users/{user_id}")]
 async fn delete_user(pool: web::Data<DbPool>, user_id: web::Path<Uuid>) -> HttpResponse {
     let conn = &mut pool.get().unwrap();
@@ -72,5 +70,5 @@ async fn delete_user(pool: web::Data<DbPool>, user_id: web::Path<Uuid>) -> HttpR
         .execute(conn)
         .unwrap();
 
-    HttpResponse::NoContent().finish() // ✅ Retourne 204 No Content
+    HttpResponse::NoContent().finish() // ✅ Returns 204 No Content
 }

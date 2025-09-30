@@ -1,48 +1,48 @@
-//! # main.rs – Point d'entrée de l'application Actix-web avec PostgreSQL
+//! # main.rs – Actix-web application entry point with PostgreSQL
 //!
-//! Ce fichier configure :
-//! - Le serveur HTTP avec actix-web
-//! - Le pool de connexions PostgreSQL
-//! - Le chargement des variables d’environnement
-//! - L’injection des routes de l’API
+//! This file configures:
+//! - The HTTP server with actix-web
+//! - The PostgreSQL connection pool
+//! - Loading environment variables
+//! - API route injection
 
-// 🔧 Modules internes
-mod db;         // Connexion à la base de données
-mod models;     // Structures de données (ex: User)
-mod schema;     // Mapping base de données (généré ou manuel)
-mod handlers;   // Fonctions HTTP pour les routes
+// 🔧 Internal modules
+mod db;         // Database connection
+mod models;     // Data structures (e.g., User)
+mod schema;     // Database mapping (generated or manual)
+mod handlers;   // HTTP functions for routes
 
-// 📦 Imports externes
-use actix_web::{App, HttpServer}; // Serveur web Actix
-use dotenvy::dotenv;              // Chargement des variables d’environnement
-use std::env;                     // Accès aux variables d’env
-use db::get_pool;                 // Fonction utilitaire pour init le pool DB
-use handlers::*;                  // Import de tous les endpoints (list, create, etc.)
+// 📦 External imports
+use actix_web::{App, HttpServer}; // Actix web server
+use dotenvy::dotenv;              // Loading environment variables
+use std::env;                     // Access to env variables
+use db::get_pool;                 // Utility function to init DB pool
+use handlers::*;                  // Import all endpoints (list, create, etc.)
 
-/// 🚀 Fonction principale – async car le serveur est asynchrone
+/// 🚀 Main function – async because the server is asynchronous
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    // ✅ Chargement du fichier .env (ex: DATABASE_URL)
+    // ✅ Load the .env file (e.g., DATABASE_URL)
     dotenv().ok();
 
-    // 🛠️ Récupération de l’URL de la base depuis les variables d’environnement
+    // 🛠️ Retrieve the database URL from environment variables
     let db_url = env::var("DATABASE_URL").expect("DATABASE_URL not set");
 
-    // 🔌 Initialisation du pool de connexions PostgreSQL
+    // 🔌 Initialize the PostgreSQL connection pool
     let pool = get_pool(&db_url);
 
-    // 🌐 Démarrage du serveur Actix-web
+    // 🌐 Start the Actix-web server
     HttpServer::new(move || {
         App::new()
-            // 🧠 Injection du pool de DB dans le contexte de l’app
+            // 🧠 Inject the DB pool into the app context
             .app_data(actix_web::web::Data::new(pool.clone()))
-            // 🔗 Enregistrement des endpoints
+            // 🔗 Register endpoints
             .service(list_users)
             .service(create_user)
             .service(update_user)
             .service(delete_user)
     })
-    // 🌍 Écoute sur toutes les interfaces (0.0.0.0), port 8080
+    // 🌍 Listen on all interfaces (0.0.0.0), port 8080
     .bind(("0.0.0.0", 8080))?
     .run()
     .await

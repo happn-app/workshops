@@ -1,39 +1,38 @@
-//! # models.rs – Représentation des entités de la base de données
+//! # models.rs – Database entity representations
 //!
-//! Ce module définit :
-//! - `User` : un utilisateur complet en base
-//! - `NewUser` : un utilisateur à insérer (sans id)
+//! This module defines:
+//! - `User`: a complete user in the database
+//! - `NewUser`: a user to insert (without id)
 //!
-//! Ces structures sont utilisées pour :
-//! - sérialiser/désérialiser en JSON (Actix)
-//! - interagir avec PostgreSQL (Diesel)
-
+//! These structures are used for:
+//! - serializing/deserializing to/from JSON (Actix)
+//! - interacting with PostgreSQL (Diesel)
 use serde::{Serialize, Deserialize};   // Pour JSON <-> struct Rust
 use diesel::prelude::*;               // Diesel ORM
 use crate::schema::users;             // Schéma généré (ou défini) pour la table `users`
 use uuid::Uuid;                       // Identifiant unique
 
-/// ✅ Représente une ligne dans la table `users`
+/// ✅ Represents a row in the `users` table
 ///
-/// Utilisé pour :
-/// - Lire des données de la base (`Queryable`)
-/// - Retourner des données au format JSON (`Serialize`)
+/// Used for:
+/// - Reading data from the database (`Queryable`)
+/// - Returning data as JSON (`Serialize`)
 #[derive(Debug, Serialize, Deserialize, Queryable, Selectable, Identifiable)]
 #[diesel(table_name = users)]
 #[diesel(check_for_backend(diesel::pg::Pg))] // Indique qu'on utilise PostgreSQL
 pub struct User {
-    pub id: Uuid,       // 🆔 UUID (clé primaire)
-    pub name: String,   // 👤 Nom de l'utilisateur
+    pub id: Uuid,       // 🆔 UUID (primary key)
+    pub name: String,   // 👤 User name
 }
 
-/// 🆕 Structure utilisée pour insérer un nouvel utilisateur
+/// 🆕 Structure used to insert a new user
 ///
-/// Utilisé pour :
-/// - Créer un utilisateur via POST/PUT
-/// - Sérialiser du JSON vers Rust
-/// - Insérer en base via Diesel (`Insertable`)
+/// Used for:
+/// - Creating a user via POST/PUT
+/// - Serializing JSON to Rust
+/// - Inserting into the database via Diesel (`Insertable`)
 #[derive(Debug, Serialize, Deserialize, Insertable)]
 #[diesel(table_name = users)]
 pub struct NewUser {
-    pub name: String,   // 👤 Nom uniquement, sans ID
+    pub name: String,   // 👤 Name only, no ID
 }

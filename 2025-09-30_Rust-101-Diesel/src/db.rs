@@ -1,29 +1,29 @@
-//! # db.rs – Connexion à PostgreSQL avec Diesel + r2d2
+//! # db.rs – Connection to PostgreSQL with Diesel + r2d2
 //!
-//! Ce module définit :
-//! - Un alias de type `DbPool` pour simplifier les appels
-//! - Une fonction `get_pool()` qui initialise le pool de connexions
+//! This module defines:
+//! - A type alias `DbPool` to simplify calls
+//! - A function `get_pool()` that initializes the connection pool
 
-// 📦 Imports des composants Diesel et r2d2 (gestion de pool de connexions)
+// 📦 Imports of Diesel and r2d2 components (connection pool management)
 use diesel::r2d2::{self, ConnectionManager}; // r2d2 = Rust Resource Pool
-use diesel::pg::PgConnection;                // Type de connexion PostgreSQL
+use diesel::pg::PgConnection;                // PostgreSQL connection type
 
-// 🧱 Alias de type pour simplifier la signature du pool
+// 🧱 Type alias to simplify the pool signature
 pub type DbPool = r2d2::Pool<ConnectionManager<PgConnection>>;
 
-/// 🔌 Fonction pour initialiser le pool de connexions
+/// 🔌 Function to initialize the connection pool
 /// 
 /// # Arguments
-/// - `database_url`: l'URL de connexion PostgreSQL (ex: depuis .env)
+/// - `database_url`: the PostgreSQL connection URL (e.g. from .env)
 ///
-/// # Retour
-/// - Un pool de connexions PostgreSQL prêtes à l'emploi
+/// # Return
+/// - A ready-to-use PostgreSQL connection pool
 pub fn get_pool(database_url: &str) -> DbPool {
-    // 🔧 Création d'un "manager" pour gérer les connexions Pg
+    // 🔧 Create a "manager" to handle Pg connections
     let manager = ConnectionManager::<PgConnection>::new(database_url);
 
-    // 🏗️ Construction du pool via r2d2
+    // 🏗️ Build the pool via r2d2
     r2d2::Pool::builder()
         .build(manager)
-        .expect("Failed to create pool.") // 🔥 Panique si la connexion échoue
+        .expect("Failed to create pool.") // 🔥 Panic if connection fails
 }

@@ -1,27 +1,26 @@
-# 🦀 Comparatif des langages backend – Rust, Go, Java, Kotlin
+# 🦀 Backend Languages Comparison – Rust, Go, Java, Kotlin
 
-Ce tableau compare objectivement Rust, Go, Java et Kotlin sur les critères clés pour développer des backends modernes.
+This table objectively compares Rust, Go, Java, and Kotlin on key criteria for developing modern backends.
 
-| Critère                       | **Rust**                      | **Go**                          | **Java**                                                  | **Kotlin**                                 |
+| Criteria                      | **Rust**                      | **Go**                          | **Java**                                                  | **Kotlin**                                 |
 | ----------------------------- | ----------------------------- | ------------------------------- | --------------------------------------------------------- | ------------------------------------------ |
-| 🧠 **Paradigme**              | Système / fonctionnel         | Procédural / concurrent         | Orienté objet                                             | Orienté objet + fonctionnel                |
-| ⚙️ **GC**                     | ❌ Non (ownership)             | ✅ Oui (optimisé)                | ✅ Oui                                                     | ✅ Oui                                      |
-| 🧵 **Async / Concurrence**    | ✅ `tokio` (zero-cost)         | ✅ `goroutines`, `channel`       | ✅ `CompletableFuture`, `virtual threads` (depuis Java 21) | ✅ Coroutines (`suspend`)                   |
-| 🚀 **Performance**            | 🟢 Très haute (C/C++ level)   | 🟡 Bonne                        | 🟠 Moyenne                                                | 🟠 Moyenne (légèrement meilleure que Java) |
-| 🛡️ **Sécurité mémoire**      | ✅ Forte (compile-time)        | ❌ Moyenne (pointeurs non sûrs)  | ❌ Moyenne                                                 | ❌ Moyenne                                  |
-| 🧰 **Tooling intégré**        | ✅ Excellent (`cargo`, etc.)   | ✅ Simple (`go build`, `go mod`) | ⚠️ Lourd (Maven/Gradle)                                   | ✅ Moderne avec Gradle & IntelliJ           |
-| 🧪 **Tests intégrés**         | ✅ Oui (dans `cargo`)          | ✅ Oui (`go test`)               | ✅ Oui (JUnit)                                             | ✅ Oui (Kotest, JUnit)                      |
-| 📚 **Écosystème**             | 🟡 En croissance rapide       | 🟢 Mature                       | 🟢 Énorme                                                 | 🟢 Énorme (compat. Java)                   |
-| 🛠️ **Frameworks web**        | `actix-web`, `axum`           | `gin`, `echo`, `fiber`          | `Spring`, `Quarkus`, `Micronaut`                          | `Ktor`, `Spring`, `Exposed`                |
-| 📦 **Déploiement**            | ✅ Binaire statique            | ✅ Binaire statique              | ❌ JVM / JAR                                               | ❌ JVM / JAR ou natif via GraalVM           |
-| 🧗 **Courbe d’apprentissage** | 🚧 Raide                      | 🟢 Facile                       | 🟠 Moyenne                                                | 🟠 Moyenne                                 |
-| 🏆 **Cas d’usage typique**    | Performant, temps réel, infra | Services backend, CLI, outils   | APIs d’entreprise, legacy, JavaEE                         | APIs modernes, Android, serverless         |
+| 🧠 **Paradigm**               | System / functional           | Procedural / concurrent         | Object-oriented                                           | Object-oriented + functional               |
+| ⚙️ **GC**                     | ❌ No (ownership)              | ✅ Yes (optimized)               | ✅ Yes                                                     | ✅ Yes                                      |
+| 🧵 **Async / Concurrency**    | ✅ `tokio` (zero-cost)         | ✅ `goroutines`, `channel`       | ✅ `CompletableFuture`, `virtual threads` (since Java 21)  | ✅ Coroutines (`suspend`)                   |
+| 🚀 **Performance**            | 🟢 Very high (C/C++ level)     | 🟡 Good                         | 🟠 Average                                                 | 🟠 Average (slightly better than Java)      |
+| 🛡️ **Memory safety**         | ✅ Strong (compile-time)       | ❌ Average (unsafe pointers)     | ❌ Average                                                 | ❌ Average                                  |
+| 🧰 **Integrated tooling**     | ✅ Excellent (`cargo`, etc.)   | ✅ Simple (`go build`, `go mod`) | ⚠️ Heavy (Maven/Gradle)                                   | ✅ Modern with Gradle & IntelliJ            |
+| 🧪 **Integrated tests**       | ✅ Yes (in `cargo`)            | ✅ Yes (`go test`)               | ✅ Yes (JUnit)                                             | ✅ Yes (Kotest, JUnit)                      |
+| 📚 **Ecosystem**              | 🟡 Rapidly growing             | 🟢 Mature                       | 🟢 Huge                                                    | 🟢 Huge (Java compatible)                   |
+| 🛠️ **Web frameworks**        | `actix-web`, `axum`           | `gin`, `echo`, `fiber`          | `Spring`, `Quarkus`, `Micronaut`                          | `Ktor`, `Spring`, `Exposed`                |
+| 📦 **Deployment**             | ✅ Static binary               | ✅ Static binary                 | ❌ JVM / JAR                                               | ❌ JVM / JAR or native via GraalVM          |
+| 🧗 **Learning curve**         | 🚧 Steep                      | 🟢 Easy                         | 🟠 Average                                                 | 🟠 Average                                 |
+| 🏆 **Typical use case**       | High performance, real-time, infra | Backend services, CLI, tools | Enterprise APIs, legacy, JavaEE                            | Modern APIs, Android, serverless           |
 
 ---
 
-💬 **Remarques** :
+💬 **Notes**:
 
-- Rust excelle en performance et sécurité mémoire, idéal pour des traitements intensifs ou temps réel.
-- Go reste simple et efficace pour du backend à faible latence, même avec une équipe junior.
-- Java/Kotlin sont très puissants dans un contexte d'entreprise avec un écosystème massif.
-
+- Rust excels in performance and memory safety, ideal for intensive or real-time processing.
+- Go remains simple and efficient for low-latency backend, even with a junior team.
+- Java/Kotlin are very powerful in an enterprise context with a massive ecosystem.
