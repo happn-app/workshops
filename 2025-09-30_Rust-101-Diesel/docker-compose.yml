@@ -1,0 +1,26 @@
+services:
+  # Service base de données PostgreSQL
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres       # utilisateur par défaut
+      POSTGRES_PASSWORD: password   # mot de passe associé
+      POSTGRES_DB: workshop         # base créée automatiquement au démarrage
+    ports:
+      - "5432:5432"                 # exposition du port local 5432 -> conteneur 5432
+    volumes:
+      - db_data:/var/lib/postgresql/data # volume persistant pour les données
+
+  # Service API (ton binaire Rust compilé via le Dockerfile)
+  api:
+    build: .                        # construit l’image avec le Dockerfile présent dans le même dossier
+    depends_on:
+      - db                          # attend que le conteneur db soit lancé avant de démarrer
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/workshop # variable d’env pour Diesel/Postgres
+    ports:
+      - "8080:8080"                 # exposition du port local 8080 -> conteneur 8080
+
+# Volume persistant pour stocker les données Postgres
+volumes:
+  db_data:

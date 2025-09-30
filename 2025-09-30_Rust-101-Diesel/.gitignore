@@ -1,0 +1,64 @@
+# ----------------------
+# Rust / Cargo
+# ----------------------
+# Cible de compilation Rust (binaires, artefacts)
+/target/
+
+# Lockfile des dépendances (utile à garder si projet applicatif,
+# mais on peut l’ignorer dans un workshop ou lib partagée)
+Cargo.lock
+
+# ----------------------
+# Diesel
+# ----------------------
+# Fichiers de sauvegarde créés si tu modifies des migrations manuellement
+/migrations/**/down.sql.bak
+/diesel.toml.bak
+
+# ----------------------
+# Logs / Temp
+# ----------------------
+# Fichiers temporaires et journaux
+*.log
+*.tmp
+*.swp
+*.swo
+
+# ----------------------
+# OS Files
+# ----------------------
+# Fichiers générés automatiquement par macOS ou Windows
+.DS_Store
+Thumbs.db
+
+# ----------------------
+# IntelliJ IDEA
+# ----------------------
+# Configs spécifiques à ta machine
+.idea/
+*.iml
+out/
+
+# ----------------------
+# VSCode (au cas où)
+# ----------------------
+.vscode/
+
+# ----------------------
+# Docker
+# ----------------------
+# Volume local Postgres (si tu le montes dans docker-compose)
+postgres-data/
+
+# Fichier .env contenant DATABASE_URL et autres secrets
+.env
+
+# ----------------------
+# Build Artifacts
+# ----------------------
+# Artefacts divers générés par la compilation Rust
+*.rlib
+*.dll
+*.so
+*.dylib
+*.exe
