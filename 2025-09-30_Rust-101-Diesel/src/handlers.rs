@@ -13,6 +13,7 @@ use uuid::Uuid;                                              // For the user's u
 
 /// ✅ Handler GET /users
 /// Retrieves the list of users from the database
+#[get("/users")]
 async fn list_users(pool: web::Data<DbPool>) -> HttpResponse {
     let conn = &mut pool.get().unwrap(); // DB connection from the pool
 

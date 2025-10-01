@@ -1,42 +1,42 @@
 # 🚀 Workshop Rust + Actix + Diesel + Postgres
 
-## 0. 🛠️ Installer Rust et utiliser Cargo
+## 0. 🛠️ Install Rust and use Cargo
 
-### Installation de Rust
-Rust s’installe via **rustup** (le gestionnaire officiel) :
+### Installing Rust
+Rust is installed via **rustup** (the official manager):
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
-Puis recharge ton terminal :
+Then reload your terminal:
 ```bash
 source $HOME/.cargo/env
 ```
 
-Vérifie l’installation :
+Check the installation:
 ```bash
 rustc --version
 cargo --version
 ```
 
-### Cargo : gestionnaire de projet Rust
-Cargo sert à :
-- **Gestion des dépendances** (`Cargo.toml`)
+### Cargo: Rust Project Manager
+Cargo is used to:
+- **Dependency management** (`Cargo.toml`)
 - **Compilation** (`cargo build`)
-- **Exécution** (`cargo run`)
-- **Tests** (`cargo test`)
+- **Execution** (`cargo run`)
+- **Testing** (`cargo test`)
 - **Documentation** (`cargo doc --open`)
-- **Audit** (`cargo audit` si installé)
-- **Formatage** (`cargo fmt`)
-- **Qualité** (`cargo clippy`)
+- **Auditing** (`cargo audit` si installé)
+- **Formatting** (`cargo fmt`)
+- **Code quality** (`cargo clippy`)
 
-### Fichiers typiques
-- `Cargo.toml` : config projet
-- `Cargo.lock` : versions exactes
-- `src/main.rs` : point d’entrée
-- `src/lib.rs` : lib (optionnel)
-- `target/` : binaires compilés
+### Typical Files
+- `Cargo.toml`: project configuration
+- `Cargo.lock`: exact dependency versions
+- `src/main.rs`: entry point
+- `src/lib.rs`: library (optional)
+- `target/`: compiled binaries
 
-### Flux typique
+### Typical Workflow
 ```bash
 cargo new hello-rust
 cd hello-rust
@@ -47,91 +47,85 @@ cargo fmt
 cargo clippy
 ```
 
-### Dépendances du projet (Diesel + Actix)
+### Project Dependencies (Diesel + Actix)
 ```toml
-actix-web = "4"                          # Framework web async basé sur Actix
-actix-rt = "2"                           # Runtime léger basé sur Actix
-serde = { version = "1", features = ["derive"] }  # JSON <-> Rust structs
-serde_json = "1"                         # Gestion JSON
-diesel = { version = "2.3", features = ["postgres", "uuid", "r2d2", "chrono"] }
-# ORM Rust : Postgres, UUID, pool r2d2, chrono
-dotenvy = "0.15"                         # Variables d’environnement
-uuid = { version = "1", features = ["v4", "serde"] }  
-# UUID v4 + support Serde
+actix-web = "4" # Async web framework based on Actix
+actix-rt = "2" # Lightweight runtime based on Actix
+serde = { version = "1", features = ["derive"] } # JSON <-> Rust structs
+serde_json = "1" # JSON handling
+diesel = { version = "2.3", features = ["postgres", "uuid", "r2d2", "chrono"] } # Rust ORM: Postgres, UUID, r2d2 pool, chrono
+dotenvy = "0.15" # Environment variables
+uuid = { version = "1", features = ["v4", "serde"] } # UUID v4 + Serde support
 ```
 
-### Alternative : projet avec SQLx + Tokio
+### Alternative: project with SQLx + Tokio
 ```toml
 actix-web = "4"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-sqlx = { version = "0.7", features = ["postgres", "runtime-tokio-native-tls", "macros"] }
-# SQLx : client async/await, validation compile-time des requêtes
-tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
-# Tokio : runtime async généraliste
+sqlx = { version = "0.7", features = ["postgres", "runtime-tokio-native-tls", "macros"] } # SQLx: async/await client, compile-time query validation
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] } # Tokio: general-purpose async runtime
 dotenvy = "0.15"
 ```
 
-### 📊 Tableau comparatif Diesel vs SQLx
-| Outil   | Type        | Points forts                                                                 | Points faibles                                        |
-|---------|-------------|-------------------------------------------------------------------------------|------------------------------------------------------|
-| Diesel  | ORM (Object Relational Mapper) | - Typage fort Rust → erreurs SQL détectées à la compilation <br> - API expressive en Rust (pas besoin d'écrire du SQL brut) <br> - Sécurité injection SQL | - Plus rigide (schema.rs obligatoire) <br> - Moins flexible pour requêtes complexes <br> - Pas nativement async |
-| SQLx    | Client async/await | - SQL brut validé à la compilation <br> - Support async/await complet <br> - Très flexible pour SQL avancé | - Pas d’ORM (pas de mapping struct/table auto) <br> - Nécessite Tokio <br> - Moins de compile-time safety sur mapping |
+### 📊 Diesel vs SQLx Comparison Table
+| Tool   | Type                    | Strengths                                                                 | Weaknesses                                                  |
+|--------|-------------------------|---------------------------------------------------------------------------|-------------------------------------------------------------|
+| Diesel | ORM (Object Relational Mapper) | - Strong Rust typing → SQL errors caught at compile time <br> - Expressive Rust API (no need to write raw SQL) <br> - SQL-injection safety | - More rigid (requires `schema.rs`) <br> - Less flexible for complex queries <br> - Not natively async |
+| SQLx   | Async/await Client      | - Raw SQL validated at compile time <br> - Full async/await support <br> - Very flexible for advanced SQL | - Not an ORM (no automatic struct/table mapping) <br> - Requires Tokio <br> - Less compile-time safety around mapping |
 
-👉 Pour un **workshop pédagogique**, on choisit **Actix + Diesel** : sécurité, compile-time safety, style ORM classique.
-
-
-### 🔄 Analogie Rust vs Java (Spring Boot, Hibernate, R2DBC)
-
-Pour les développeurs venant de l’écosystème **Java / Spring**, voici les équivalences :
-
-| Rust                | Java / Spring équivalent                       |
-|---------------------|------------------------------------------------|
-| **Actix** (framework web complet) | **Spring Boot MVC** (Tomcat) ou **Spring WebFlux** (Reactor Netty) |
-| **Tokio** (runtime async bas niveau) | **Reactor Netty** (moteur async) |
-| **Diesel** (ORM Rust, compile-time safety) | **Hibernate / JPA** |
-| **SQLx** (client SQL async, pas un ORM) | **R2DBC** (client DB réactif, pas JPA) |
-
-👉 Résumé :  
-- **Actix = Spring Boot** (framework web haut niveau)  
-- **Tokio = Reactor Netty** (moteur async)  
-- **Diesel = Hibernate/JPA** (ORM classique)  
-- **SQLx = R2DBC** (client SQL réactif sans ORM)  
-
-Cela permet de comprendre rapidement où se situent les technos Rust dans l’univers Java.
+👉 For a **learning workshop**, we choose **Actix + Diesel**: safety, compile-time guarantees, classic ORM style.
 
 
+### 🔄 Rust vs Java Analogy (Spring Boot, Hibernate, R2DBC)
 
-## 1. 📦 Structure d’un projet Rust
+For developers coming from the **Java / Spring** ecosystem, here are the equivalences:
 
-Un projet Rust est géré par **Cargo**, l’outil officiel :  
-- `Cargo.toml` → fichier de configuration du projet (dépendances, version, etc.)  
-- `Cargo.lock` → lockfile qui fige les versions des dépendances (généré automatiquement)  
-- `src/main.rs` → point d’entrée de l’application (fonction `main`)  
-- `src/lib.rs` → bibliothèque (si le projet est utilisé comme lib Rust)  
-- `target/` → dossier généré avec les binaires compilés  
+| Rust                                 | Java / Spring equivalent                                      |
+|--------------------------------------|---------------------------------------------------------------|
+| **Actix** (full web framework)       | **Spring Boot MVC** (Tomcat) or **Spring WebFlux** (Reactor Netty) |
+| **Tokio** (low-level async runtime)  | **Reactor Netty** (async engine)                              |
+| **Diesel** (Rust ORM, compile-time safety) | **Hibernate / JPA**                                      |
+| **SQLx** (async SQL client, not an ORM) | **R2DBC** (reactive DB client, not JPA)                   |
 
-👉 **Commandes de base** :  
+👉 Summary:
+- **Actix = Spring Boot** (high-level web framework)
+- **Tokio = Reactor Netty** (async engine)
+- **Diesel = Hibernate/JPA** (classic ORM)
+- **SQLx = R2DBC** (reactive SQL client without an ORM)
+
+This helps quickly map where Rust technologies sit in the Java ecosystem.
+
+## 1. 📦 Structure of a Rust Project
+
+A Rust project is managed by **Cargo**, the official tool:  
+- `Cargo.toml` → project configuration file (dependencies, version, etc.)  
+- `Cargo.lock` → lockfile that locks dependency versions (generated automatically)  
+- `src/main.rs` → application entry point (function `main`)  
+- `src/lib.rs` → library (if the project is used as a Rust lib)  
+- `target/` → folder generated with compiled binaries  
+
+👉 **Basic commands**:  
 ```bash
-cargo build      # compile le projet
-cargo run        # compile + lance le projet
-cargo test       # lance les tests
+cargo build      # compile the project
+cargo run        # compile + run the project
+cargo test       # run tests
 ```
 
 ---
 
-## 2. 📂 Structure de ce projet Workshop
+## 2. 📂 Structure of this Workshop Project
 
 ```
-rust-ws/
- ├── Cargo.toml              # dépendances Rust (actix, diesel, etc.)
+2025-09-30_Rust-101-Diesel/
+ ├── Cargo.toml              # Rust dependencies (actix, diesel, etc.)
  ├── src/
- │   ├── main.rs             # démarrage serveur Actix
- │   ├── handlers.rs         # API REST (CRUD users)
+ │   ├── main.rs             # Actix server startup
+ │   ├── handlers.rs         # REST API (CRUD users)
  │   ├── models.rs           # structs Rust <-> tables SQL
- │   ├── schema.rs           # généré par Diesel (description tables)
+ │   ├── schema.rs           # generated by Diesel (table description)
  │   └── db.rs               # gestion pool Postgres
- ├── migrations/             # migrations Diesel (SQL)
+ ├── migrations/             # Diesel migrations (SQL)
  ├── docker-compose.yml      # stack Docker (API + Postgres)
  ├── Dockerfile              # build image API Rust
  └── README.md               # (ce fichier)
@@ -141,14 +135,32 @@ rust-ws/
 
 ## 3. 🗄️ Diesel & Migrations
 
-Diesel est un ORM Rust qui gère les tables via **migrations** :  
 
-- Créer une migration :  
+**Additional Notes:**
+
+ **Install `diesel_cli` via Cargo**
+
+> ```bash
+> cargo install diesel_cli --no-default-features --features postgres
+> ```
+This installs the `diesel` command-line tool used for generating and running migrations.
+
+ **Create a `.env` file with your database URL**
+> Create a `.env` file at the project root with:
+
+> ```
+> DATABASE_URL=postgres://postgres:password@localhost:5432/workshop
+> ```
+ **What this environment variable is used for:** both Diesel and the application read `DATABASE_URL` to know how to connect to PostgreSQL. Commands like `diesel migration run` and your app at startup use it to establish the DB connection without hardcoding credentials.
+
+Diesel is a Rust ORM that manages tables via **migrations**:  
+
+- Create a migration:
 ```bash
 diesel migration generate create_users
 ```
 
-- Exemple `up.sql` :
+- Example `up.sql`: (Warning: Not generated automatically by Diesel)
 ```sql
 CREATE TABLE users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -160,82 +172,82 @@ CREATE TABLE users (
 SELECT diesel_manage_updated_at('users');
 ```
 
-- Exemple `down.sql` :
+- Example `down.sql`: (Warning: Not generated automatically by Diesel)
 ```sql
 DROP TABLE users;
 ```
 
-- Appliquer toutes les migrations :  
+- Apply all migrations:
 ```bash
 diesel migration run
 ```
 
-- Voir l’état des migrations :  
+- See the status of migrations:
 ```bash
 SELECT * FROM __diesel_schema_migrations;
 ```
 
 ---
 
-## 4. 🐚 Cheatsheet psql
+## 4. 🐚 psql Cheatsheet
 
-Dans le conteneur Postgres :  
+In the Postgres container:  
 ```bash
 docker exec -it rust-ws-db-1 psql -U postgres -d workshop
 ```
 
-Commandes utiles :  
+Useful commands:  
 ```sql
-\l             -- lister les DB
-\c workshop    -- se connecter à une DB
-\dt            -- lister les tables
-\d users       -- structure de la table users
-SELECT * FROM users;  -- voir le contenu
-\q             -- quitter
+\l             -- list DBs
+\c workshop    -- connect to a DB
+\dt            -- list tables
+\d users       -- structure of the users table
+SELECT * FROM users;  -- view contents
+\q             -- quit
 ```
 
 ---
 
 ## 5. 🛠️ Setup IntelliJ IDEA
 
-- Installer [IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/).  
-- Installer le plugin **Rust** depuis le marketplace IntelliJ.  
-- Installer le plugin **Toml** (souvent déjà inclus).  
-- Ouvrir le projet avec IntelliJ → il détecte `Cargo.toml`.  
-- Lancer :  
-  - `cargo build` depuis IntelliJ ou terminal intégré.  
-  - Débugger avec un **Run Configuration → Cargo Run**.  
+- Install [IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/).  
+- Install the **Rust** plugin from the IntelliJ Marketplace.  
+- Install the **Toml** plugin (often already included).  
+- Open the project with IntelliJ → it detects `Cargo.toml`.  
+- Run:  
+  - `cargo build` from IntelliJ or the integrated terminal.  
+  - Debug with a **Run Configuration → Cargo Run**.  
 
 ---
 
 ## 5bis. 🛠️ Setup VS Code
 
-- Installer [Visual Studio Code](https://code.visualstudio.com/).
-- Installer l’extension **Rust Analyzer** (recommandée pour l’autocomplétion, le type checking et la navigation).
-- Installer l’extension **Even Better TOML** pour une meilleure gestion des fichiers `Cargo.toml`.
-- Installer l’extension **CodeLLDB** si tu veux déboguer ton code Rust.
-- Ouvrir le projet avec VS Code → il détectera `Cargo.toml`.
-- Lancer :
-  - `cargo build` depuis le terminal intégré.
-  - `cargo run` pour exécuter l’application.
-  - Déboguer avec un **launch.json** configuré sur le binaire `crud-workshop`.
+- Install [Visual Studio Code](https://code.visualstudio.com/).
+- Installer the **Rust Analyzer** extension (recommended for autocompletion, type checking and navigation).
+- Install the **Even Better TOML** extension for better handling of `Cargo.toml` files.
+- Install the **CodeLLDB** extension if you want to debug your Rust code.
+- Open the project with VS Code → it will detect `Cargo.toml`.
+- Run:
+  - `cargo build` from the integrated terminal.
+  - `cargo run` to run the application.
+  - Debug with a **launch.json** configured for the `crud-workshop` binary.
 
-👉 Avec VS Code, tu as une expérience proche de JetBrains mais plus légère.
+👉 With VS Code, you get an experience close to JetBrains but lighter.
 
 ---
 
-## 6. 🚀 Lancer le projet Workshop
+## 6. 🚀 Run the Workshop Project
 
-### 1. Lancer la stack Docker
+### 1. Start the Docker stack
 ```bash
 docker compose up --build
 ```
 
-👉 Cela lance :  
-- `db` → conteneur Postgres (port 5432)  
-- `api` → serveur Actix REST (port 8080)  
+👉 This launches:  
+- `db` → Postgres container (port 5432)  
+- `api` → Actix REST server (port 8080)  
 
-### 2. Préparer la DB
+### 2. Prepare the DB
 ```bash
 diesel setup
 diesel migration run
@@ -243,31 +255,31 @@ diesel migration run
 
 ---
 
-## 7. 🌐 Tester l’API (cURL)
+## 7. 🌐 Test the API (cURL)
 
-- **Créer un utilisateur** :
+- **Create a user**:
 ```bash
 curl -X POST http://localhost:8080/users   -H "Content-Type: application/json"   -d '{"name": "Alice"}'
 ```
 
-- **Lister les utilisateurs** :
+- **List users**:
 ```bash
 curl http://localhost:8080/users
 ```
 
-- **Mettre à jour un utilisateur** :
+- **Update a user**:
 ```bash
 curl -X PUT http://localhost:8080/users/<UUID>   -H "Content-Type: application/json"   -d '{"name": "Alice Updated"}'
 ```
 
-- **Supprimer un utilisateur** :
+- **Delete a user**:
 ```bash
 curl -X DELETE http://localhost:8080/users/<UUID>
 ```
 
 ---
 
-## 8. 🔄 Reset du projet Workshop
+## 8. 🔄 Reset the Workshop Rust API CRUD with Actix / Diesel and Postgres
 
 ### Option rapide (via Diesel)
 ```bash
@@ -282,32 +294,32 @@ diesel setup
 diesel migration run
 ```
 
-👉 Supprime les volumes Postgres → DB neuve.
+👉 Deletes Postgres volumes → fresh database.
 
 ---
 
-## 9. 🐳 Rappel commandes Docker
+## 9. 🐳 Docker Commands Recap
 
-- Lancer :  
+- Run:  
 ```bash
 docker compose up --build
 ```
 
-- Stopper :  
+- Stop:
 ```bash
 docker compose down
 ```
 
-- Voir les logs :  
+- View logs:  
 ```bash
 docker compose logs -f
 ```
 
-- Accéder au conteneur Postgres :  
+- Access the Postgres container:  
 ```bash
 docker exec -it rust-ws-db-1 psql -U postgres -d workshop
 ```
 
 ---
 
-✅ Tu as maintenant un **projet Rust/Actix/Diesel/Postgres clé en main**, avec toute la doc pour l’installer, l’utiliser, le tester et le reset.  
+✅ You now have a **turnkey Rust/Actix/Diesel/Postgres project**, with full docs to install, use, test, and reset.  
