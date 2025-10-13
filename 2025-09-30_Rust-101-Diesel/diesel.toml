@@ -1,0 +1,18 @@
+# Diesel CLI configuration
+# Official documentation:
+# https://diesel.rs/guides/configuring-diesel-cli
+
+[print_schema]
+# Location of the generated file containing the Rust schema from the DB
+file = "src/schema.rs"
+
+# Additional derived traits for generated custom types
+custom_type_derives = [
+    "diesel::query_builder::QueryId",
+    "Clone"
+]
+
+[migrations_directory]
+# RELATIVE path to the migrations (to be versioned with the project)
+# Important: never use an absolute path here
+dir = "migrations"

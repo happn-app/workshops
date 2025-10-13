@@ -14,6 +14,7 @@ The repository includes workshops on various topics:
 - [Android Development with Kotlin](./2025-06-03_Android-101-Kotlin/README.md)
 - [Go Programming basics](./2025-06-10_Go-101/README.md)
 - [Kotlin Multiplatform (KMP)](./2025-07-08_KMP-101/README.md)
+- [Rust Programming basics (Actix Web + Diesel + PostgreSQL)](./2025-09-30_Rust-101-Diesel/README.md)
 
 ## Getting Started
 
