@@ -11,6 +11,7 @@ mod db;         // Database connection
 mod models;     // Data structures (e.g., User)
 mod schema;     // Database mapping (generated or manual)
 mod handlers;   // HTTP functions for routes
+mod error; // Error handling
 
 // 📦 External imports
 use actix_web::{App, HttpServer}; // Actix web server
