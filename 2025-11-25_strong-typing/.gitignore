@@ -1,0 +1,20 @@
+# Mac OS
+.DS_Store
+
+# temp files
+*~*
+
+# generated files
+bin/
+gen/
+build/
+out/
+
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.idea/
+.fleet/
+.gradle/
+.kotlin/
