@@ -1,0 +1,17 @@
+type: marketplace
+title: Kotlin Coroutines
+language: English
+programming_language: Kotlin
+content:
+  - Introduction
+  - CoroutineScopeAndLaunch
+  - AsyncAndAwait
+  - ColdFlow
+  - HotFlowsAndCombine
+environment_settings:
+  jvm_language_level: JDK_17
+additional_files:
+  - name: build.gradle
+  - name: settings.gradle
+  - name: gradle/wrapper/gradle-wrapper.properties
+yaml_version: 5
